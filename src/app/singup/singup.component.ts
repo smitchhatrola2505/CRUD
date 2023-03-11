@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { CustomeValidatoreService } from '../services/custome-validatore.service';
 
 
 @Component({
@@ -7,14 +8,15 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
   templateUrl: './singup.component.html',
   styleUrls: ['./singup.component.css']
 })
-export class SingupComponent implements OnInit{
+export class SingupComponent implements OnInit {
 
   cities = ['Rajkot', 'Jamanager', 'Navsari', 'Surat', 'Morbi', 'Valsad', 'Porbander', 'Junagadh']
 
   formGroup: FormGroup;
+  
+  hide:true|any;
 
-
-  constructor() {
+  constructor(private customeValidatore: CustomeValidatoreService) {
     this.formGroup = new FormGroup({
 
       firstName: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern("^[A-Za-z. ]*$")]),
@@ -29,13 +31,17 @@ export class SingupComponent implements OnInit{
       password: new FormControl(null, [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$")]),
       confirmPassword: new FormControl(null, [Validators.required])
 
+    }, {
+      validators: [
+        this.customeValidatore.comparePassword("confirmPassword", "password")
+      ]
     });
+
   }
 
   ngOnInit(): void {
 
   }
-
   getFormControl(controlName: string): FormControl {
     return this.formGroup.get(controlName) as FormControl;
   }
@@ -44,6 +50,7 @@ export class SingupComponent implements OnInit{
   getErrorMessage(controlName: string, errorType: string): string {
     //controlName = "customerName"
     //errorType = "required"
+
     switch (controlName) {
       case "firstName":
         {
@@ -114,13 +121,13 @@ export class SingupComponent implements OnInit{
             return "";
         }
 
-        case "gender":
-          {
-            if (errorType === "required")
-              return "You must select a <strong>Gender</strong>";
-            else
-              return "";
-          }
+      case "gender":
+        {
+          if (errorType === "required")
+            return "You must select a <strong>Gender</strong>";
+          else
+            return "";
+        }
 
       case "pincode":
         {
@@ -140,19 +147,31 @@ export class SingupComponent implements OnInit{
             return "";
         }
 
-        case "password":
-          {
-            if (errorType === "required")
-              return "<strong>Password</strong> is required!";
-            else if (errorType === "pattern")
-              return "<strong>Password</strong> must be having given strong, please follow given hint!";
-            else
-              return "";
-          }
+      case "password":
+        {
+          if (errorType === "required")
+            return "<strong>Password</strong> is required!";
+          else if (errorType === "pattern")
+            return "<strong>Password</strong> must be having given strong, please follow given hint!";
+          else
+            return "";
+        }
 
+      case "confirmPassword":
+        {
+          if (errorType === "required") {
+
+            return "<strong>Confirm Password</strong> is required!";
+          }
+          if (errorType === "error") {
+
+            return "<strong>Confirm Password</strong> not match!";
+          }
+          else
+            return "";
+        }
       default: return "";
     }
   }
-
 
 }
