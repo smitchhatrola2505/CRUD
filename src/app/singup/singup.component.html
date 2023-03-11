@@ -197,7 +197,7 @@
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input  [type]="hide ? 'password' : 'text'" formControlName="password" required="required" matInput placeholder="Password"
+                <input  [type]="hide ? 'password' : 'text'" formControlName="password" matInput placeholder="Password"
                     maxlength="12" #pswd>
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}visibility</mat-icon>
                 <mat-hint>Must contain at least one number and one uppercase and lowercase letter, and at least 8

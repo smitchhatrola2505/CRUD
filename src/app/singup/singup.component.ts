@@ -13,8 +13,7 @@ export class SingupComponent implements OnInit {
   cities = ['Rajkot', 'Jamanager', 'Navsari', 'Surat', 'Morbi', 'Valsad', 'Porbander', 'Junagadh']
 
   formGroup: FormGroup;
-  
-  hide:true|any;
+  hide:true;
 
   constructor(private customeValidatore: CustomeValidatoreService) {
     this.formGroup = new FormGroup({
