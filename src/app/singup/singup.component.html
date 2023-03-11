@@ -1,0 +1,241 @@
+<div class="container margin">
+    <form [formGroup]="formGroup" class="mx-5 item-center padding my-5 w-50 shadow px-5 py-3 mb-5 bg-body rounded">
+        <br>
+
+        <!-- First & Last Name -->
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput maxlength="20" #FirstName placeholder="First Name"
+                    formControlName="firstName">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint>Ex.Ramesh</mat-hint>
+                <mat-hint align="end">{{FirstName.value.length}}/20</mat-hint>
+
+                <mat-error *ngIf="getFormControl('firstName').hasError('required')"
+                    [innerHTML]="getErrorMessage('firstName','required')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('firstName').hasError('minlength')"
+                    [innerHTML]="getErrorMessage('firstName','minLength')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('firstName').hasError('pattern')"
+                    [innerHTML]="getErrorMessage('firstName','pattern')"></mat-error>
+
+
+
+            </mat-form-field>
+        </div>
+        <br>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input type="text" required="required" formControlName="lastName" maxlength="20" #lastName matInput
+                    placeholder="Last Name">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint>Ex.Sharma</mat-hint>
+                <mat-hint align="end">{{lastName.value.length}}/20</mat-hint>
+
+                <mat-error *ngIf="getFormControl('lastName').hasError('required')"
+                    [innerHTML]="getErrorMessage('lastName','required')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('lastName').hasError('minlength')"
+                    [innerHTML]="getErrorMessage('lastName','minLength')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('lastName').hasError('pattern')"
+                    [innerHTML]="getErrorMessage('lastName','pattern')"></mat-error>
+            </mat-form-field>
+        </div>
+
+        <br>
+
+        <!-- Email & Mobile Number -->
+
+        <div class="row">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Mail">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-hint>example@gmail.com </mat-hint>
+
+                <mat-error *ngIf="getFormControl('email').hasError('required')"
+                    [innerHTML]="getErrorMessage('email','required')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('email').hasError('email')"
+                    [innerHTML]="getErrorMessage('email','email')"></mat-error>
+
+            </mat-form-field>
+        </div>
+        <br>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNumber" #phoneNumber
+                    maxlength="10">
+                <mat-icon matSuffix>call</mat-icon>
+                <mat-hint align="end">{{phoneNumber.value.length}}/10</mat-hint>
+
+                <mat-error *ngIf="getFormControl('mobileNumber').hasError('required')"
+                    [innerHTML]="getErrorMessage('mobileNumber','required')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('mobileNumber').hasError('pattern')"
+                    [innerHTML]="getErrorMessage('mobileNumber','pattern')"></mat-error>
+
+            </mat-form-field>
+        </div>
+
+        <br>
+
+
+        <!-- Address -->
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input type="text" required="required" formControlName="address" matInput placeholder="Address" #address
+                    maxlength="50">
+                <mat-icon matSuffix>home</mat-icon>
+                <mat-hint align="end"> {{address.value.length}}/50 </mat-hint>
+
+                <mat-error *ngIf="getFormControl('address').hasError('required')"
+                    [innerHTML]="getErrorMessage('address','required')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('address').hasError('minlength')"
+                    [innerHTML]="getErrorMessage('address','minLength')"></mat-error>
+            </mat-form-field>
+        </div>
+        <br>
+
+        <!-- City & Pincode -->
+
+        <div class="row">
+
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city">
+                    <mat-option>-- Please Select --</mat-option>
+                    <mat-option *ngFor="let city of cities" value="city">{{city}}</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="getFormControl('city').hasError('required')"
+                    [innerHTML]="getErrorMessage('city','required')"></mat-error>
+
+
+            </mat-form-field>
+        </div>
+        <br>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input type="text" formControlName="pincode" matInput placeholder="Pincode" maxlength="6" #pincode>
+                <mat-icon matSuffix>location_on</mat-icon>
+                <mat-hint align="end">{{pincode.value.length}}/6</mat-hint>
+
+                <mat-error *ngIf="getFormControl('pincode').hasError('required')"
+                    [innerHTML]="getErrorMessage('pincode','required')"></mat-error>
+                <mat-error *ngIf="getFormControl('pincode').hasError('pattern' || 'minlength')"
+                    [innerHTML]="getErrorMessage('pincode','pattern')"></mat-error>
+
+
+
+            </mat-form-field>
+        </div>
+
+        <br>
+
+        <!-- Gender & BirthDate -->
+
+        <div class="row">
+
+            <mat-radio-group aria-label="Select an option" formControlName="gender">
+                <mat-radio-button value="1">Male</mat-radio-button>
+                <mat-radio-button value="2">Female</mat-radio-button>
+
+            </mat-radio-group>
+
+            <mat-error *ngIf="getFormControl('gender').hasError('required') && 
+                getFormControl('gender').touched" [innerHTML]="getErrorMessage('gender','required')"></mat-error>
+
+
+        </div>
+        <br>
+
+        <div class="row">
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>BirthDate</mat-label>
+
+                <input [matDatepicker]="datepicker" formControlName="birthdate" required="required" matInput
+                    placeholder="BirthDate">
+
+
+                <mat-datepicker-toggle matSuffix [for]="datepicker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+
+                <mat-datepicker #datepicker>
+
+                </mat-datepicker>
+
+                <mat-hint>DD-MM-YYYY</mat-hint>
+
+                <mat-error *ngIf="getFormControl('birthdate').hasError('required')"
+                    [innerHTML]="getErrorMessage('birthdate','required')"></mat-error>
+            </mat-form-field>
+
+
+
+        </div>
+
+
+        <br>
+
+        <!-- Password & Confirm Password -->
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="password" formControlName="password" required="required" matInput placeholder="Password"
+                    maxlength="12" #pswd>
+                <mat-icon matSuffix>visibility</mat-icon>
+                <mat-hint>Must contain at least one number and one uppercase and lowercase letter, and at least 8
+                    characters.</mat-hint>
+                <mat-hint align="end"> {{pswd.value.length}}/12</mat-hint>
+
+                <mat-error *ngIf="getFormControl('password').hasError('required')"
+                    [innerHTML]="getErrorMessage('password','required')"></mat-error>
+                <mat-error *ngIf="getFormControl('password').hasError('pattern')"
+                    [innerHTML]="getErrorMessage('password','pattern')"></mat-error>
+
+            </mat-form-field>
+        </div>
+        <br>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input type="password" required="required" matInput placeholder="Confirm Password">
+                <mat-icon matSuffix>visibility</mat-icon>
+                <mat-hint>Confirm Password</mat-hint>
+            </mat-form-field>
+        </div>
+
+
+        <br>
+
+        <!-- submit & save etc... -->
+
+        <div class="row">
+            <div class="col-5 offset-1">
+                <button mat-raised-button class="w-100" color="primary">Submit</button>
+            </div>
+            <div class="col-5">
+                <button mat-raised-button class="w-100" color="warn" type="reset">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
