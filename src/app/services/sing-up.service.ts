@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { SingUp } from '../sing-up';
 
 @Injectable({
@@ -8,11 +8,20 @@ import { SingUp } from '../sing-up';
 })
 export class SingUpService {
 
-  constructor(private httpClient: HttpClient) { }
+  private httpClient: HttpClient | null = null;
 
-  
-  insertProject(newSingUp: SingUp): Observable<SingUp>
-  {
-    return this.httpClient.post<SingUp>( "/api/singUp", newSingUp, { responseType: "json" });
+  constructor(private httpBackend: HttpBackend) { }
+
+
+  public insertProject(signUpViewModel: SingUp): Observable<any> {
+    // debugger;
+    this.httpClient = new HttpClient(this.httpBackend);
+    return this.httpClient.post<any>("http://localhost:5249/api/singUp", signUpViewModel, { responseType: "json", observe: "response" })
+      .pipe(map(response => {
+        if (response.ok == true) {
+          console.log(response);
+        }
+      
+      }));
   }
 }

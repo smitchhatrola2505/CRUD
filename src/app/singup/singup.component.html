@@ -1,5 +1,5 @@
 <div class="container margin">
-    <form [formGroup]="formGroup" class="mx-5 item-center padding my-5 w-50 shadow px-5 py-3 mb-5 bg-body rounded">
+    <form [formGroup]="formGroup"  (ngSubmit)="onSubmitClick()" class="mx-5 item-center padding my-5 w-50 shadow px-5 py-3 mb-5 bg-body rounded">
         <br>
 
         <!-- First & Last Name -->
@@ -8,7 +8,7 @@
             <mat-form-field appearance="outline">
 
                 <mat-label>First Name</mat-label>
-                <input type="text" matInput maxlength="20" #FirstName placeholder="First Name"
+                <input type="text" name="firstName" id="firstName" matInput maxlength="20" #FirstName placeholder="First Name"
                     formControlName="firstName">
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-hint>Ex.Ramesh</mat-hint>
@@ -29,7 +29,7 @@
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
-                <input type="text" required="required" formControlName="lastName" maxlength="20" #lastName matInput
+                <input type="text" name="lastName" id="lastName" formControlName="lastName" maxlength="20" #lastName matInput
                     placeholder="Last Name">
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-hint>Ex.Sharma</mat-hint>
@@ -54,7 +54,7 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email" placeholder="Mail">
+                <input type="text" name="email" id="email" matInput formControlName="email" placeholder="Mail">
                 <mat-icon matSuffix>email</mat-icon>
                 <mat-hint>example@gmail.com </mat-hint>
 
@@ -70,7 +70,7 @@
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Mobile Number</mat-label>
-                <input type="text" matInput placeholder="Mobile Number" formControlName="mobileNumber" #phoneNumber
+                <input type="text" name="mobileNumber" id="mobileNumber" matInput placeholder="Mobile Number" formControlName="mobileNumber" #phoneNumber
                     maxlength="10">
                 <mat-icon matSuffix>call</mat-icon>
                 <mat-hint align="end">{{phoneNumber.value.length}}/10</mat-hint>
@@ -92,7 +92,7 @@
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Address</mat-label>
-                <input type="text" required="required" formControlName="address" matInput placeholder="Address" #address
+                <input type="text" name="address" id="address" formControlName="address" matInput placeholder="Address" #address
                     maxlength="50">
                 <mat-icon matSuffix>home</mat-icon>
                 <mat-hint align="end"> {{address.value.length}}/50 </mat-hint>
@@ -112,9 +112,9 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
-                <mat-select formControlName="city">
+                <mat-select formControlName="city" name="city" id="city">
                     <mat-option>-- Please Select --</mat-option>
-                    <mat-option *ngFor="let city of cities" value="city">{{city}}</mat-option>
+                    <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
                 </mat-select>
 
                 <mat-error *ngIf="getFormControl('city').hasError('required')"
@@ -128,7 +128,7 @@
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Pincode</mat-label>
-                <input type="text" formControlName="pincode" matInput placeholder="Pincode" maxlength="6" #pincode>
+                <input name="pincode" id="pincode" formControlName="pincode" matInput placeholder="Pincode" maxlength="6" #pincode>
                 <mat-icon matSuffix>location_on</mat-icon>
                 <mat-hint align="end">{{pincode.value.length}}/6</mat-hint>
 
@@ -150,9 +150,9 @@
 
                 <!-- <mat-label>Gender</mat-label> -->
 
-                <mat-radio-group aria-label="Select an option" formControlName="gender">
-                    <mat-radio-button value="1" color="primary">Male</mat-radio-button>
-                    <mat-radio-button value="2" color="primary">Female</mat-radio-button>
+                <mat-radio-group name="gender" id="gender" aria-label="Select an option" formControlName="gender">
+                    <mat-radio-button value="Male" color="primary">Male</mat-radio-button>
+                    <mat-radio-button value="Female" color="primary">Female</mat-radio-button>
 
                 </mat-radio-group>
 
@@ -168,7 +168,7 @@
 
                 <mat-label>BirthDate</mat-label>
 
-                <input [matDatepicker]="datepicker" formControlName="birthdate" required="required" matInput
+                <input type="datetime" name="birthDate" id="birthDate" [matDatepicker]="datepicker" formControlName="birthdate" required="required" matInput
                     placeholder="BirthDate">
 
 
@@ -199,7 +199,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
 
-                <input formControlName="password" matInput placeholder="Password" maxlength="12" #pswd
+                <input formControlName="password" name="password" id="password" matInput placeholder="Password" maxlength="12" #pswd
                     [type]="hide1 ? 'password' : 'text'">
 
                 <mat-icon matSuffix (click)="hide1 =! hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>

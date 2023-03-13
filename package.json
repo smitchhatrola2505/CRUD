@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
+    
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^14.0.1",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "cors": "^2.8.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

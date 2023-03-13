@@ -1,11 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DialogForCancelButtonComponent } from '../dialog-for-cancel-button/dialog-for-cancel-button.component';
 import { DialogSubmitButtonComponent } from '../dialog-submit-button/dialog-submit-button.component';
 import { DialogSubmitValidateComponent } from '../dialog-submit-validate/dialog-submit-validate.component';
 import { CustomeValidatoreService } from '../services/custome-validatore.service';
-
+import { SingUpService } from '../services/sing-up.service';
+import { SingUp } from '../sing-up';
 
 @Component({
   selector: 'app-singup',
@@ -16,12 +18,16 @@ export class SingupComponent {
 
   cities = ['Rajkot', 'Jamanager', 'Navsari', 'Surat', 'Morbi', 'Valsad', 'Porbander', 'Junagadh']
 
-  formGroup: FormGroup;
+  formGroup: FormGroup | any = null;
   hide1: boolean = true;
   hide2: boolean = true;
   done: boolean = true;
+  canLeave: boolean = true;
+  registerError: string | null = null;
 
-  constructor(private customeValidatore: CustomeValidatoreService, public dialog: MatDialog) {
+  constructor(private customeValidatore: CustomeValidatoreService, 
+    public dialog: MatDialog,public singupServices:SingUpService,
+    private router: Router) {
 
     this.formGroup = new FormGroup({
 
@@ -43,9 +49,33 @@ export class SingupComponent {
       ]
     });
 
+    this.formGroup.valueChanges.subscribe((value: any) => {
+      //console.log(value);
+      this.canLeave = false;
+    });
+
   }
 
+  onSubmitClick() {
+    //Display current form value
+    this.formGroup["submitted"] = true;
 
+    if (this.formGroup.valid) {
+    console.log(this.formGroup);
+
+      var signUpViewModel = this.formGroup.value as SingUp;
+      this.singupServices.insertProject(signUpViewModel).subscribe(
+        (response) => {
+          this.canLeave = true;
+          this.router.navigate(["login"]);
+        },
+        (error) => {
+          console.log(error);
+          this.registerError = "Unable to submit";
+        });
+    }
+
+    }
 
   openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
 
@@ -69,7 +99,7 @@ export class SingupComponent {
   }
 
   submitDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
-    if (this.formGroup.status == "INVALID") {
+    if (this.formGroup.status == "INVALID" && this.canLeave == false) {
       this.dialog.open(DialogSubmitValidateComponent,{
         enterAnimationDuration,
         exitAnimationDuration,
