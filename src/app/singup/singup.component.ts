@@ -3,6 +3,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogForCancelButtonComponent } from '../dialog-for-cancel-button/dialog-for-cancel-button.component';
 import { DialogSubmitButtonComponent } from '../dialog-submit-button/dialog-submit-button.component';
+import { DialogSubmitValidateComponent } from '../dialog-submit-validate/dialog-submit-validate.component';
 import { CustomeValidatoreService } from '../services/custome-validatore.service';
 
 
@@ -11,12 +12,13 @@ import { CustomeValidatoreService } from '../services/custome-validatore.service
   templateUrl: './singup.component.html',
   styleUrls: ['./singup.component.css']
 })
-export class SingupComponent  {
+export class SingupComponent {
 
   cities = ['Rajkot', 'Jamanager', 'Navsari', 'Surat', 'Morbi', 'Valsad', 'Porbander', 'Junagadh']
 
   formGroup: FormGroup;
-  hide: boolean = true;
+  hide1: boolean = true;
+  hide2: boolean = true;
   done: boolean = true;
 
   constructor(private customeValidatore: CustomeValidatoreService, public dialog: MatDialog) {
@@ -45,13 +47,13 @@ export class SingupComponent  {
 
 
 
-  openDialoge(enterAnimationDuration: string, exitAnimationDuration: string):void {
+  openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
 
     const dialogRef = this.dialog.open(DialogForCancelButtonComponent, {
 
       enterAnimationDuration,
       exitAnimationDuration,
-
+     
     });
 
     dialogRef.afterClosed().subscribe(res => {
@@ -59,12 +61,27 @@ export class SingupComponent  {
         this.done = false;
         console.log(this.done);
       }
+      else {
+        this.done = true;
+        console.log(this.done);
+      }
     });
   }
 
-  submitDialog()
-  {
-    this.dialog.open(DialogSubmitButtonComponent);
+  submitDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
+    if (this.formGroup.status == "INVALID") {
+      this.dialog.open(DialogSubmitValidateComponent,{
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+    }
+    else {
+      this.dialog.open(DialogSubmitButtonComponent,{
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+    }
+
   }
 
   getFormControl(controlName: string): FormControl {

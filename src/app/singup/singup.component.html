@@ -148,15 +148,16 @@
 
         <div class="row">
 
-            <mat-radio-group aria-label="Select an option" formControlName="gender">
-                <mat-radio-button value="1" color="primary">Male</mat-radio-button>
-                <mat-radio-button value="2" color="primary">Female</mat-radio-button>
+                <!-- <mat-label>Gender</mat-label> -->
 
-            </mat-radio-group>
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-radio-button value="1" color="primary">Male</mat-radio-button>
+                    <mat-radio-button value="2" color="primary">Female</mat-radio-button>
 
-            <mat-error *ngIf="getFormControl('gender').hasError('required') && 
+                </mat-radio-group>
+
+                <mat-error *ngIf="getFormControl('gender').hasError('required') && 
                 getFormControl('gender').touched" [innerHTML]="getErrorMessage('gender','required')"></mat-error>
-
 
         </div>
         <br>
@@ -198,10 +199,10 @@
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
 
-                <input formControlName="password" matInput placeholder="Password"
-                    maxlength="12" #pswd [type]="hide ? 'password' : 'text'" >
+                <input formControlName="password" matInput placeholder="Password" maxlength="12" #pswd
+                    [type]="hide1 ? 'password' : 'text'">
 
-                <mat-icon matSuffix (click)="hide =! hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon matSuffix (click)="hide1 =! hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-hint>Must contain at least one number and one uppercase and lowercase letter, and at least 8
                     characters.</mat-hint>
                 <mat-hint align="end"> {{pswd.value.length}}/12</mat-hint>
@@ -217,9 +218,9 @@
         <div class="row">
             <mat-form-field appearance="outline">
                 <mat-label>Confirm Password</mat-label>
-                <input formControlName="confirmPassword" [type]="hide?'password':'text'" matInput
+                <input formControlName="confirmPassword" [type]="hide2?'password':'text'" matInput
                     placeholder="Confirm Password">
-                <mat-icon matSuffix (click)="hide =! hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon matSuffix (click)="hide2 =! hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-hint>Confirm Password</mat-hint>
                 <mat-error *ngIf="getFormControl('confirmPassword').hasError('required')"
                     [innerHTML]="getErrorMessage('confirmPassword','required')"></mat-error>
@@ -238,11 +239,12 @@
 
         <div class="row">
             <div class="col-5 offset-1">
-                <button mat-raised-button class="w-100" color="primary" (click)="submitDialog()">Submit</button>
+                <button mat-raised-button class="w-100" color="primary"
+                    (click)="submitDialog('300ms', '200ms')">Submit</button>
             </div>
             <div class="col-5">
-                <button mat-raised-button class="w-100" color="warn" (click)="openDialoge('200ms', '100ms')" 
-                [type]="done?'reset':'button'">Cancel</button>
+                <button mat-raised-button class="w-100" color="warn" (click)="openDialoge('300ms', '200ms')"
+                    [type]="done?'reset':'button'">Cancel</button>
 
             </div>
         </div>

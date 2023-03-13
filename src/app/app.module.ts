@@ -21,6 +21,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogForCancelButtonComponent } from './dialog-for-cancel-button/dialog-for-cancel-button.component';
 import { DialogSubmitButtonComponent } from './dialog-submit-button/dialog-submit-button.component';
+import { DialogSubmitValidateComponent } from './dialog-submit-validate/dialog-submit-validate.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { DialogSubmitButtonComponent } from './dialog-submit-button/dialog-submi
     SingupComponent,
     DialogForCancelButtonComponent,
     DialogSubmitButtonComponent,
+    DialogSubmitValidateComponent,
   ],
   imports: [
     BrowserModule,
