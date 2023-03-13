@@ -22,6 +22,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogForCancelButtonComponent } from './dialog-for-cancel-button/dialog-for-cancel-button.component';
 import { DialogSubmitButtonComponent } from './dialog-submit-button/dialog-submit-button.component';
 import { DialogSubmitValidateComponent } from './dialog-submit-validate/dialog-submit-validate.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DataComponent } from './data/data.component';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { DialogSubmitValidateComponent } from './dialog-submit-validate/dialog-s
     DialogForCancelButtonComponent,
     DialogSubmitButtonComponent,
     DialogSubmitValidateComponent,
+    DataComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { DialogSubmitValidateComponent } from './dialog-submit-validate/dialog-s
     MatPseudoCheckboxModule,
     MatInputModule,
     MatIconModule,
+    HttpClientModule,   
     MatDatepickerModule,
     MatNativeDateModule
   ],
