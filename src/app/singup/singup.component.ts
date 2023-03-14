@@ -99,7 +99,7 @@ export class SingupComponent {
   }
 
   submitDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
-    if (this.formGroup.status == "INVALID" && this.canLeave == false) {
+    if (this.formGroup.status == "INVALID" || this.canLeave == false) {
       this.dialog.open(DialogSubmitValidateComponent,{
         enterAnimationDuration,
         exitAnimationDuration,
