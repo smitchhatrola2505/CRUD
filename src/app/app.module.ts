@@ -28,6 +28,7 @@ import { DialogSubmitServerErrorComponent } from './dialog-submit-server-error/d
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     MatFormFieldModule,
     FormsModule,
     MatSortModule,

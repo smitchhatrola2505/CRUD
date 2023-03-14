@@ -1,70 +1,94 @@
-<div class="m-5">
-    <table mat-table [dataSource]="Data" class="mat-elevation-z8 demo-table" 
-    matSort>
+<form [formGroup]="formGroup">
+    <div class="m-5 user-select-none">
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Search</mat-label>
+            <input type="text" matInput formControlName="search" (keyup)="filterData()" />
+            <mat-icon matPrefix>search</mat-icon>
+            <mat-icon matSuffix class="cursor-pointer" (click)="clearFilter()">close</mat-icon>
+        </mat-form-field>
+        <table mat-table [dataSource]="Data" class="mat-elevation-z8 demo-table" matSort>
 
-        <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef="" mat-sort-header>First Name</th>
-            <td mat-cell *matCellDef="let x">{{x.firstName}}</td>
-            <td mat-footer-cell *matFooterCellDef class="fw-bold">Total SingUp:</td>
-        </ng-container>
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef="" mat-sort-header>First Name</th>
+                <td mat-cell *matCellDef="let x">{{x.firstName}}</td>
+                <td mat-footer-cell *matFooterCellDef class="fw-bold">Total SingUp:</td>
+            </ng-container>
 
-        <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef="">Last Name</th>
-            <td mat-cell *matCellDef="let x">{{x.lastName}}</td>
-            <td mat-footer-cell *matFooterCellDef class="fw-bold">
-                {{rows.length}} </td>
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef="">Last Name</th>
+                <td mat-cell *matCellDef="let x">{{x.lastName}}</td>
+                <td mat-footer-cell *matFooterCellDef class="fw-bold">
+                    {{rows.length}} </td>
 
-        </ng-container>
+            </ng-container>
 
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef="">Email</th>
-            <td mat-cell *matCellDef="let x">{{x.email}}</td>
-        </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef="">Email</th>
+                <td mat-cell *matCellDef="let x">{{x.email}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="mobileNumber">
-            <th mat-header-cell *matHeaderCellDef="">Mobile Number</th>
-            <td mat-cell *matCellDef="let x">{{x.mobileNumber}}</td>
-        </ng-container>
+            <ng-container matColumnDef="mobileNumber">
+                <th mat-header-cell *matHeaderCellDef="">Mobile Number</th>
+                <td mat-cell *matCellDef="let x">{{x.mobileNumber}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="birthDate">
-            <th mat-header-cell *matHeaderCellDef="">BirthDate</th>
-            <td mat-cell *matCellDef="let x">{{x.birthDate | date}}</td>
-        </ng-container>
+            <ng-container matColumnDef="birthDate">
+                <th mat-header-cell *matHeaderCellDef="">BirthDate</th>
+                <td mat-cell *matCellDef="let x">{{x.birthDate | date}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="gender">
-            <th mat-header-cell *matHeaderCellDef="">Gender</th>
-            <td mat-cell *matCellDef="let x">{{x.gender}}</td>
-        </ng-container>
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef="">Gender</th>
+                <td mat-cell *matCellDef="let x">{{x.gender}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="address">
-            <th mat-header-cell *matHeaderCellDef="">Address</th>
-            <td mat-cell *matCellDef="let x">{{x.address}}</td>
-        </ng-container>
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef="">Address</th>
+                <td mat-cell *matCellDef="let x">{{x.address}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="city">
-            <th mat-header-cell *matHeaderCellDef="">City</th>
-            <td mat-cell *matCellDef="let x">{{x.city}}</td>
-        </ng-container>
-        
-        <ng-container matColumnDef="pincode">
-            <th mat-header-cell *matHeaderCellDef="">Pincode</th>
-            <td mat-cell *matCellDef="let x">{{x.pincode}}</td>
-        </ng-container>
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef="">City</th>
+                <td mat-cell *matCellDef="let x">{{x.city}}</td>
+            </ng-container>
 
-        <!-- header rows -->
-        <tr mat-header-row *matHeaderRowDef="columnToDisplay" class="p-2"></tr>
-        <tr mat-row *matRowDef="let data;columns:columnToDisplay" class="p-2"> </tr>
+            <ng-container matColumnDef="pincode">
+                <th mat-header-cell *matHeaderCellDef="">Pincode</th>
+                <td mat-cell *matCellDef="let x">{{x.pincode}}</td>
+            </ng-container>
 
-        <!-- footer rows -->
+            <!-- loading/progress -->
 
-        <tr mat-footer-row *matFooterRowDef="['firstName','lastName']" ></tr>
-        <tr mat-footer-row *matFooterRowDef="['firstName','lastName']" ></tr>
+            <!-- loading / progress -->
 
-    </table>
+            <ng-container matColumnDef="loading">
+                <td mat-footer-cell *matFooterCellDef class="text-center text-italic h5 p-4" colspan="9">
+                    <div [ngClass]="{'hidden':isError}">
+                        <mat-spinner diameter="40" class="m-auto mb-3"></mat-spinner>
+                    </div>
+                    {{dataLoadingStatus}}
+                </td>
+            </ng-container>
 
-</div>
 
-<div>
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]"
-    showFirstLastButtons></mat-paginator>
-</div>
+
+            <!-- header rows -->
+            <tr mat-header-row *matHeaderRowDef="columnToDisplay" class="p-2" [ngClass]="{'hidden': !isLoadingData}">
+            </tr>
+            <tr mat-row *matRowDef="let data;columns:columnToDisplay" class="p-2"> </tr>
+
+            <!-- footer rows -->
+
+            <tr mat-footer-row *matFooterRowDef="['firstName','lastName']" [ngClass]="{'hidden': !isLoadingData}"></tr>
+            <tr mat-footer-row *matFooterRowDef="[ 'loading']" [ngClass]="{ 'hidden': isLoadingData}"></tr>
+
+
+
+        </table>
+
+    </div>
+
+    <div [ngClass]="{'hidden': !isLoadingData}">
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+    </div>
+</form>
