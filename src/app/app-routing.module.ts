@@ -8,6 +8,8 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"singup", component:SingupComponent},
   {path:"data", component:DataComponent},
+  {path:"",redirectTo:"data",pathMatch:"full"},
+  {path:"**",redirectTo:"data",pathMatch:"full"}
 
 ];
 

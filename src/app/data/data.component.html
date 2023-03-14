@@ -1,1 +1,70 @@
-<p>data works!</p>
+<div class="m-5">
+    <table mat-table [dataSource]="Data" class="mat-elevation-z8 demo-table" 
+    matSort>
+
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef="" mat-sort-header>First Name</th>
+            <td mat-cell *matCellDef="let x">{{x.firstName}}</td>
+            <td mat-footer-cell *matFooterCellDef class="fw-bold">Total SingUp:</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef="">Last Name</th>
+            <td mat-cell *matCellDef="let x">{{x.lastName}}</td>
+            <td mat-footer-cell *matFooterCellDef class="fw-bold">
+                {{rows.length}} </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef="">Email</th>
+            <td mat-cell *matCellDef="let x">{{x.email}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="mobileNumber">
+            <th mat-header-cell *matHeaderCellDef="">Mobile Number</th>
+            <td mat-cell *matCellDef="let x">{{x.mobileNumber}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthDate">
+            <th mat-header-cell *matHeaderCellDef="">BirthDate</th>
+            <td mat-cell *matCellDef="let x">{{x.birthDate | date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef="">Gender</th>
+            <td mat-cell *matCellDef="let x">{{x.gender}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef="">Address</th>
+            <td mat-cell *matCellDef="let x">{{x.address}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef="">City</th>
+            <td mat-cell *matCellDef="let x">{{x.city}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="pincode">
+            <th mat-header-cell *matHeaderCellDef="">Pincode</th>
+            <td mat-cell *matCellDef="let x">{{x.pincode}}</td>
+        </ng-container>
+
+        <!-- header rows -->
+        <tr mat-header-row *matHeaderRowDef="columnToDisplay" class="p-2"></tr>
+        <tr mat-row *matRowDef="let data;columns:columnToDisplay" class="p-2"> </tr>
+
+        <!-- footer rows -->
+
+        <tr mat-footer-row *matFooterRowDef="['firstName','lastName']" ></tr>
+        <tr mat-footer-row *matFooterRowDef="['firstName','lastName']" ></tr>
+
+    </table>
+
+</div>
+
+<div>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]"
+    showFirstLastButtons></mat-paginator>
+</div>

@@ -8,14 +8,18 @@ import { SingUp } from '../sing-up';
 })
 export class SingUpService {
 
-  private httpClient: HttpClient | null = null;
+  
 
-  constructor(private httpBackend: HttpBackend) { }
+  constructor(private httpClient: HttpClient) { }
 
+  public getSingupData():Observable<SingUp[]>
+  {
+    return this.httpClient.get<SingUp[]>("http://localhost:5249/api/singUp", { responseType: "json" });
+  }
 
   public insertProject(signUpViewModel: SingUp): Observable<any> {
     // debugger;
-    this.httpClient = new HttpClient(this.httpBackend);
+  
     return this.httpClient.post<any>("http://localhost:5249/api/singUp", signUpViewModel, { responseType: "json", observe: "response" })
       .pipe(map(response => {
         if (response.ok == true) {

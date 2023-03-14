@@ -25,7 +25,9 @@ import { DialogSubmitValidateComponent } from './dialog-submit-validate/dialog-s
 import { HttpClientModule } from '@angular/common/http';
 import { DataComponent } from './data/data.component';
 import { DialogSubmitServerErrorComponent } from './dialog-submit-server-error/dialog-submit-server-error.component';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,11 @@ import { DialogSubmitServerErrorComponent } from './dialog-submit-server-error/d
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
+    MatSortModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatRadioModule,
     MatSelectModule,
     ReactiveFormsModule,

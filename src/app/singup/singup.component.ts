@@ -28,7 +28,6 @@ export class SingupComponent {
 
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
-    console.log(day);
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
   };
@@ -58,7 +57,6 @@ export class SingupComponent {
     });
 
     this.formGroup.valueChanges.subscribe((value: any) => {
-      console.log("value change"+value);
       this.canLeave = false;
     });
 
@@ -80,13 +78,14 @@ export class SingupComponent {
         },
         (error) => {
           console.log(error);
+          this.afterResponseApi('300ms', '200ms');
           this.registerError = "Unable to submit";
         });
     }
 
     }
 
-  openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
+openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
 
     const dialogRef = this.dialog.open(DialogForCancelButtonComponent, {
 
@@ -95,12 +94,15 @@ export class SingupComponent {
      
     });
 
-    dialogRef.afterClosed().subscribe(res => {
+ dialogRef.afterClosed().subscribe(res => {
       if (res == false) {
-        this.done = false;
+         this.done =  false;
+      
       }
       else {
         this.done = true;
+        
+
       }
     });
   }
@@ -122,6 +124,7 @@ export class SingupComponent {
       this.dialog.open(DialogSubmitServerErrorComponent,{
         enterAnimationDuration,
         exitAnimationDuration,
+        
       });
     }
     else {
