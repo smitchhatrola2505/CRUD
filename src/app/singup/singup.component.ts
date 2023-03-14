@@ -1,9 +1,11 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogForCancelButtonComponent } from '../dialog-for-cancel-button/dialog-for-cancel-button.component';
 import { DialogSubmitButtonComponent } from '../dialog-submit-button/dialog-submit-button.component';
+import { DialogSubmitServerErrorComponent } from '../dialog-submit-server-error/dialog-submit-server-error.component';
 import { DialogSubmitValidateComponent } from '../dialog-submit-validate/dialog-submit-validate.component';
 import { CustomeValidatoreService } from '../services/custome-validatore.service';
 import { SingUpService } from '../services/sing-up.service';
@@ -17,13 +19,19 @@ import { SingUp } from '../sing-up';
 export class SingupComponent {
 
   cities = ['Rajkot', 'Jamanager', 'Navsari', 'Surat', 'Morbi', 'Valsad', 'Porbander', 'Junagadh']
-
   formGroup: FormGroup | any = null;
   hide1: boolean = true;
   hide2: boolean = true;
   done: boolean = true;
   canLeave: boolean = true;
   registerError: string | null = null;
+
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    console.log(day);
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  };
 
   constructor(private customeValidatore: CustomeValidatoreService, 
     public dialog: MatDialog,public singupServices:SingUpService,
@@ -50,23 +58,24 @@ export class SingupComponent {
     });
 
     this.formGroup.valueChanges.subscribe((value: any) => {
-      //console.log(value);
+      console.log("value change"+value);
       this.canLeave = false;
     });
 
   }
+
 
   onSubmitClick() {
     //Display current form value
     this.formGroup["submitted"] = true;
 
     if (this.formGroup.valid) {
-    console.log(this.formGroup);
 
       var signUpViewModel = this.formGroup.value as SingUp;
       this.singupServices.insertProject(signUpViewModel).subscribe(
         (response) => {
           this.canLeave = true;
+          this.afterResponseApi('300ms', '200ms');
           this.router.navigate(["login"]);
         },
         (error) => {
@@ -89,18 +98,28 @@ export class SingupComponent {
     dialogRef.afterClosed().subscribe(res => {
       if (res == false) {
         this.done = false;
-        console.log(this.done);
       }
       else {
         this.done = true;
-        console.log(this.done);
       }
     });
   }
 
   submitDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
-    if (this.formGroup.status == "INVALID" || this.canLeave == false) {
+    if (this.formGroup.status == "INVALID") {
       this.dialog.open(DialogSubmitValidateComponent,{
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+    }
+
+  }
+
+  afterResponseApi(enterAnimationDuration: string, exitAnimationDuration: string)
+  {
+     if(this.canLeave == false){
+
+      this.dialog.open(DialogSubmitServerErrorComponent,{
         enterAnimationDuration,
         exitAnimationDuration,
       });
@@ -111,8 +130,8 @@ export class SingupComponent {
         exitAnimationDuration,
       });
     }
-
   }
+
 
   getFormControl(controlName: string): FormControl {
     return this.formGroup.get(controlName) as FormControl;
@@ -246,4 +265,5 @@ export class SingupComponent {
     }
   }
 
+ 
 }

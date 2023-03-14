@@ -24,6 +24,7 @@ import { DialogSubmitButtonComponent } from './dialog-submit-button/dialog-submi
 import { DialogSubmitValidateComponent } from './dialog-submit-validate/dialog-submit-validate.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataComponent } from './data/data.component';
+import { DialogSubmitServerErrorComponent } from './dialog-submit-server-error/dialog-submit-server-error.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { DataComponent } from './data/data.component';
     DialogSubmitButtonComponent,
     DialogSubmitValidateComponent,
     DataComponent,
+    DialogSubmitServerErrorComponent,
   ],
   imports: [
     BrowserModule,
