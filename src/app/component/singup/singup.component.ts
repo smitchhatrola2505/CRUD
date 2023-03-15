@@ -76,7 +76,7 @@ export class SingupComponent {
           this.hidden = true;
           this.afterResponseApi('300ms', '200ms');
           this.router.navigate(["login"]);
-        },
+        }, 
         (error) => {
           console.log(error);
           this.hidden = true;
@@ -100,11 +100,9 @@ export class SingupComponent {
       exitAnimationDuration,
 
     });
-    dialogRef1.afterClosed().subscribe(res => {
-      console.log(res);
-      alert(res);
-      if (res == "") {
-        alert(res);
+    dialogRef1.afterClosed().subscribe((result) => {
+     
+      if (result == false) {
         this.router.navigate(["login"]);
       }
     });
@@ -119,7 +117,7 @@ export class SingupComponent {
 
     });
 
-    dialogRef.afterClosed().subscribe(res => {
+    dialogRef.afterClosed().subscribe((res) => {
       if (res == false) {
         this.done = false;
       }

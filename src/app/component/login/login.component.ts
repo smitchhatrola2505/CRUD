@@ -33,6 +33,11 @@ export class LoginComponent {
   onLoginClick()
   {
     this.hidden=false;
+
+    if(this.formGroup.invalid)
+    {
+      this.hidden=true;
+    }
     
     setTimeout(()=>{
     this.formGroup["submitted"] = true;
@@ -56,10 +61,6 @@ export class LoginComponent {
           }
           console.log(error);
         });   
-    }
-    else
-    {
-      this.hidden=true;
     }
 
   },1500);

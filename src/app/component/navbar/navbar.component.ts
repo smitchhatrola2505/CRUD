@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+
+  arrowDown = true;
+
+toggleArrow() {
+  this.arrowDown = !this.arrowDown;
+}
 }

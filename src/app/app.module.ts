@@ -31,6 +31,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoginDialogAlertComponent } from './dialog/login-dialog-alert/login-dialog-alert.component';
 import { DuplicatedataDialogComponent } from './dialog/duplicatedata-dialog/duplicatedata-dialog.component'
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -50,13 +52,16 @@ import { DuplicatedataDialogComponent } from './dialog/duplicatedata-dialog/dupl
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    MatToolbarModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    FlexLayoutModule,
     FormsModule,
     MatSortModule,
+    MatMenuModule,
     MatCheckboxModule,
     MatDialogModule,
     MatTableModule,

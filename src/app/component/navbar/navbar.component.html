@@ -1,12 +1,51 @@
-<mat-toolbar color="primary">
-    <span>CRUD</span>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
 
-    <a mat-button>Home</a>
+
+    <!-- left box of toolbar start -->
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <a mat-icon-button>
+            <mat-icon>home</mat-icon>
+        </a>
+        <span>CRUD</span>
+    </div>
+
+    <!-- center box -->
+
+    <div>
+        <button type="button" mat-stroked-button (click)="toggleArrow()" fxHide.lt-md="true">
+
+            <span>Statistics</span>
+            <mat-icon [innerHtml]="arrowDown ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"></mat-icon>
+            <mat-icon>analytics</mat-icon>
+
+        </button>
+    </div>
+
+    <!-- last box -->
+    <div fxLayoutAlign="space-between center">
+        <button type="button" mat-stroked-button fxHide.lt-md="true">
+            <mat-icon>account_circle</mat-icon>User
+        </button>
+        <button type="button" mat-icon-button>
+           <mat-icon>notifications</mat-icon> 
+        </button>
+        <button type="button" mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <!-- <a mat-button mat-raised-button color="warn" routerLink="/login">Login</a> &nbsp;
+        <a mat-button mat-raised-button color="accent" routerLink="/singup">SingUp</a> -->
+    </div>
+    <!-- <a mat-button>Home</a>
     <a mat-button>Services</a>
     <a mat-button>Projects</a>
     <a mat-button routerLink="/data">Data</a>
-    <div class="spacer"></div>
+    <div class="spacer"></div> -->
 
-    <a mat-button mat-raised-button color="warn" routerLink="/login">Login</a> &nbsp;
-    <a mat-button mat-raised-button color="accent" routerLink="/singup">SingUp</a>
+    <!-- <p>{{"smit"}}</p> -->
+    <!-- <a mat-button mat-raised-button color="warn" routerLink="/login">Login</a> &nbsp;
+    <a mat-button mat-raised-button color="accent" routerLink="/singup">SingUp</a> -->
 </mat-toolbar>
