@@ -170,8 +170,9 @@
 
                 <mat-label>BirthDate</mat-label>
 
-                <input type="datetime" name="birthDate" id="birthDate" [matDatepickerFilter]="myFilter" [matDatepicker]="datepicker"
-                    formControlName="birthdate" required="required" matInput placeholder="BirthDate">
+                <input type="datetime" name="birthDate" id="birthDate" [matDatepickerFilter]="myFilter"
+                    [matDatepicker]="datepicker" formControlName="birthdate" required="required" matInput
+                    placeholder="BirthDate">
 
 
                 <mat-datepicker-toggle matSuffix [for]="datepicker">
@@ -234,20 +235,29 @@
             </mat-form-field>
         </div>
 
-
+        <!-- progress bar -->
         <br>
-
+        <div [ngClass]="{'hidden':hidden}" class="border border-1 rounded my-3 mx-5 shadow-lg bg-body w-75">
+            <mat-progress-spinner mode="indeterminate" diameter="40" class="m-auto mb-3 mt-3">
+            </mat-progress-spinner>
+            <div class="h6 marginMeassage ">
+                {{"Please wait..."}}
+            </div>
+        </div>
         <!-- submit & save etc... -->
 
         <div class="row">
-            <div class="col-5 offset-1">
+            <div class="col-4 offset-0">
                 <button mat-raised-button class="w-100" color="primary"
-                    (click)="submitDialog('300ms', '200ms')">Submit</button>
+                    (click)="submitDialog('300ms', '200ms')" [disabled]="!hidden">Submit</button>
             </div>
-            <div class="col-5">
+            <div class="col-4 ">
                 <button mat-raised-button class="w-100" color="warn" (click)="openDialoge('300ms', '200ms')"
-                    [type]="done?'reset':'button'">Cancel</button>
-
+                    [type]="done?'reset':'button'">Reset</button>
+            </div>
+            <div class="col-4 ">
+                <button mat-raised-button class="w-100" routerLink="/login" color="accent"
+                    >Go back</button>
             </div>
         </div>
     </form>

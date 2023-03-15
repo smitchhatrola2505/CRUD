@@ -3,13 +3,14 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogForCancelButtonComponent } from '../dialog-for-cancel-button/dialog-for-cancel-button.component';
-import { DialogSubmitButtonComponent } from '../dialog-submit-button/dialog-submit-button.component';
-import { DialogSubmitServerErrorComponent } from '../dialog-submit-server-error/dialog-submit-server-error.component';
-import { DialogSubmitValidateComponent } from '../dialog-submit-validate/dialog-submit-validate.component';
-import { CustomeValidatoreService } from '../services/custome-validatore.service';
-import { SingUpService } from '../services/sing-up.service';
-import { SingUp } from '../sing-up';
+import { DialogForCancelButtonComponent } from '../../dialog/dialog-for-cancel-button/dialog-for-cancel-button.component';
+import { DialogSubmitButtonComponent } from '../../dialog/dialog-submit-button/dialog-submit-button.component';
+import { DialogSubmitServerErrorComponent } from '../../dialog/dialog-submit-server-error/dialog-submit-server-error.component';
+import { DialogSubmitValidateComponent } from '../../dialog/dialog-submit-validate/dialog-submit-validate.component';
+import { DuplicatedataDialogComponent } from '../../dialog/duplicatedata-dialog/duplicatedata-dialog.component';
+import { CustomeValidatoreService } from '../../services/custome-validatore.service';
+import { SingUpService } from '../../services/sing-up.service';
+import { SingUp } from '../../viewmodel/sing-up';
 
 @Component({
   selector: 'app-singup',
@@ -22,18 +23,17 @@ export class SingupComponent {
   formGroup: FormGroup | any = null;
   hide1: boolean = true;
   hide2: boolean = true;
-  done: boolean = true;
+  done: boolean = false;
   canLeave: boolean = true;
-  registerError: string | null = null;
-
+  hidden: boolean = true;
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
   };
 
-  constructor(private customeValidatore: CustomeValidatoreService, 
-    public dialog: MatDialog,public singupServices:SingUpService,
+  constructor(private customeValidatore: CustomeValidatoreService,
+    public dialog: MatDialog, public singupServices: SingUpService,
     private router: Router) {
 
     this.formGroup = new FormGroup({
@@ -63,72 +63,94 @@ export class SingupComponent {
   }
 
 
+
   onSubmitClick() {
     //Display current form value
     this.formGroup["submitted"] = true;
-
     if (this.formGroup.valid) {
-
+      this.hidden = false;
       var signUpViewModel = this.formGroup.value as SingUp;
       this.singupServices.insertProject(signUpViewModel).subscribe(
         (response) => {
           this.canLeave = true;
+          this.hidden = true;
           this.afterResponseApi('300ms', '200ms');
           this.router.navigate(["login"]);
         },
         (error) => {
           console.log(error);
-          this.afterResponseApi('300ms', '200ms');
-          this.registerError = "Unable to submit";
+          this.hidden = true;
+          if (error.status == 409) {
+            this.duplicateData("300ms", "200ms");
+          }
+          else {
+            this.formGroup.reset();
+            this.afterResponseApi('300ms', '200ms');
+          }
         });
     }
 
-    }
+  }
 
-openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
+  duplicateData(enterAnimationDuration: string, exitAnimationDuration: string) {
+
+    const dialogRef1 = this.dialog.open(DuplicatedataDialogComponent, {
+
+      enterAnimationDuration,
+      exitAnimationDuration,
+
+    });
+    dialogRef1.afterClosed().subscribe(res => {
+      console.log(res);
+      alert(res);
+      if (res == "") {
+        alert(res);
+        this.router.navigate(["login"]);
+      }
+    });
+  }
+
+  openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
 
     const dialogRef = this.dialog.open(DialogForCancelButtonComponent, {
 
       enterAnimationDuration,
       exitAnimationDuration,
-     
+
     });
 
- dialogRef.afterClosed().subscribe(res => {
+    dialogRef.afterClosed().subscribe(res => {
       if (res == false) {
-         this.done =  false;
-      
+        this.done = false;
       }
       else {
-        this.done = true;
-        
-
+        this.formGroup.reset();
       }
     });
   }
 
   submitDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
     if (this.formGroup.status == "INVALID") {
-      this.dialog.open(DialogSubmitValidateComponent,{
+      this.dialog.open(DialogSubmitValidateComponent, {
         enterAnimationDuration,
         exitAnimationDuration,
-      });
+      },
+      );
     }
 
   }
 
-  afterResponseApi(enterAnimationDuration: string, exitAnimationDuration: string)
-  {
-     if(this.canLeave == false){
+  afterResponseApi(enterAnimationDuration: string, exitAnimationDuration: string) {
+    if (this.canLeave == false) {
 
-      this.dialog.open(DialogSubmitServerErrorComponent,{
+      this.dialog.open(DialogSubmitServerErrorComponent, {
         enterAnimationDuration,
         exitAnimationDuration,
-        
+
       });
     }
     else {
-      this.dialog.open(DialogSubmitButtonComponent,{
+      this.dialog.open(DialogSubmitButtonComponent, {
         enterAnimationDuration,
         exitAnimationDuration,
       });
@@ -268,5 +290,5 @@ openDialoge(enterAnimationDuration: string, exitAnimationDuration: string) {
     }
   }
 
- 
+
 }

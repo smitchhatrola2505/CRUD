@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { SingUpService } from '../services/sing-up.service';
-import { SingUp } from '../sing-up';
+import { SingUpService } from '../../services/sing-up.service';
+import { SingUp } from '../../viewmodel/sing-up';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -61,7 +61,6 @@ export class DataComponent implements OnInit {
             }
             return data2.firstName.indexOf(filter) != -1 || data.mobileNumber.indexOf(filter) != -1 || data2.lastName.indexOf(filter) != -1 || data2.email.indexOf(filter) != -1;
           };
-          console.log(response);
         }, (error) => {
           this.dataLoadingStatus = "Server side error! Please contact technician.";
           this.isError = true;

@@ -9,3 +9,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;overflow-x: 
 .cursor-pointer{
   cursor: pointer;
 }
+.margin {
+  margin: 50px 400px;
+}
+.marginMeassage{
+  margin-left: 40%;
+  margin-bottom: 20px;
+}
+mat-progress-spinner {
+  margin: 0 auto;
+  display: block;
+}

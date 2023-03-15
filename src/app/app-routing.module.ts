@@ -1,15 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DataComponent } from './data/data.component';
-import { LoginComponent } from './login/login.component';
-import { SingupComponent } from './singup/singup.component';
+import { DataComponent } from './component/data/data.component';
+import { LoginComponent } from './component/login/login.component';
+import { SingupComponent } from './component/singup/singup.component';
 
 const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"singup", component:SingupComponent},
   {path:"data", component:DataComponent},
-  {path:"",redirectTo:"data",pathMatch:"full"},
-  {path:"**",redirectTo:"data",pathMatch:"full"}
+  {path:"",redirectTo:"login",pathMatch:"full"},
+  {path:"**",redirectTo:"login",pathMatch:"full"}
 
 ];
 

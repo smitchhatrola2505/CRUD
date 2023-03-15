@@ -1,7 +1,7 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { SingUp } from '../sing-up';
+import { SingUp } from '../viewmodel/sing-up';
 
 @Injectable({
   providedIn: 'root'

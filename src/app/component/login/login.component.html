@@ -1,0 +1,70 @@
+<div class="container margin">
+    <form [formGroup]="formGroup" (ngSubmit)="onLoginClick()" class="mx-5 item-center padding my-5 w-50 shadow px-5 py-3 mb-5 bg-body rounded">
+        <br>
+
+        <!-- email -->
+        <div class="row">
+            <mat-form-field appearance="outline">
+
+                <mat-label>Email</mat-label>
+                <input type="email" name="email" id="email" matInput
+                    placeholder="Email" formControlName="email">
+                <mat-icon matPrefix>email</mat-icon>
+                <mat-hint>Email must be valid</mat-hint>
+              
+
+                <mat-error *ngIf="getFormControl('email').hasError('required')"
+                    [innerHTML]="getErrorMessage('email','required')"></mat-error>
+
+                <mat-error *ngIf="getFormControl('email').hasError('email')"
+                    [innerHTML]="getErrorMessage('email','email')"></mat-error>
+            </mat-form-field>
+        </div>
+        <br>
+        <!-- password -->
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+
+                <input formControlName="password" name="password" id="password" matInput placeholder="Password"
+                      [type]="hide1 ? 'password' : 'text'">
+
+                <mat-icon matPrefix (click)="hide1 =! hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-hint>Enter correct password</mat-hint>
+             
+
+                <mat-error *ngIf="getFormControl('password').hasError('required')"
+                    [innerHTML]="getErrorMessage('password','required')"></mat-error>
+                <mat-error *ngIf="getFormControl('password').hasError('pattern')"
+                    [innerHTML]="getErrorMessage('password','pattern')"></mat-error>
+
+            </mat-form-field>
+        </div>
+
+        <!-- Progress Bar -->
+
+        <br>
+        <div [ngClass]="{'hidden':hidden}" class="border border-1 rounded my-3 mx-5 shadow-lg bg-body w-75">
+            <mat-progress-spinner mode="indeterminate" diameter="40" class="m-auto mb-3 mt-3">
+            </mat-progress-spinner>
+            <div class="h6 marginMeassage ">
+                {{"Please wait..."}}
+            </div>
+        </div>
+
+        <br>
+        <!-- submit & save etc... -->
+
+        <div class="row">
+            <div class="col-5 offset-1">
+                <button mat-raised-button class="w-100" color="primary" [disabled]="!hidden">Login</button>
+            </div>
+            <div class="col-5">
+                <button mat-raised-button class="w-100" color="warn" routerLink="/singup">Not have account!</button>
+
+            </div>
+        </div>
+
+    </form>
+</div>

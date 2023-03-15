@@ -12,7 +12,6 @@ export class SingUp {
     password: string | any;
 
 
-
     constructor() {
         this.id = null;
         this.firstName = null;
