@@ -1,4 +1,4 @@
-<div class="container margin">
+<div class="container margin" [style.margin-bottom.px]="marginBottom">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmitClick()"
         class="mx-5 item-center padding my-5 w-50 shadow px-5 py-3 mb-5 bg-body rounded">
         <br>
@@ -84,7 +84,6 @@
 
             </mat-form-field>
         </div>
-
         <br>
 
 
@@ -193,7 +192,6 @@
 
         </div>
 
-
         <br>
 
         <!-- Password & Confirm Password -->
@@ -236,6 +234,7 @@
         </div>
 
         <!-- progress bar -->
+       
         <br>
         <div [ngClass]="{'hidden':hidden}" class="border border-1 rounded my-3 mx-5 shadow-lg bg-body w-75">
             <mat-progress-spinner mode="indeterminate" diameter="40" class="m-auto mb-3 mt-3">
@@ -244,6 +243,7 @@
                 {{"Please wait..."}}
             </div>
         </div>
+       
         <!-- submit & save etc... -->
 
         <div class="row">
@@ -253,12 +253,13 @@
             </div>
             <div class="col-4 ">
                 <button mat-raised-button class="w-100" color="warn" (click)="openDialoge('300ms', '200ms')"
-                    [type]="done?'reset':'button'">Reset</button>
+                    [type]="done?'reset':'button'" [disabled]="!hidden">Reset</button>
             </div>
             <div class="col-4 ">
                 <button mat-raised-button class="w-100" routerLink="/login" color="accent"
-                    >Go back</button>
+                [disabled]="!hidden"  >Go back</button>
             </div>
         </div>
+
     </form>
 </div>

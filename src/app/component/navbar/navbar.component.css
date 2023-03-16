@@ -1,3 +1,40 @@
 .spacer{
     flex: 1 1 auto;
 }
+mat-toolbar{
+    box-shadow: 0px 0px 7px 0px #000000;
+    /* margin-bottom: 100px; */
+}
+
+.mar64px{
+    margin-top: 64px;
+}
+
+
+.drawer a
+{
+  transition: border 0.3s;
+}
+
+.main
+{
+  /* background-color:#f5f5f5; */
+  background-color: #edf0f8;
+  padding: 12px;
+  min-height: 90vh !important;
+  min-width: 360px;
+  /* max-height: 90vh !important;
+  overflow: scroll-y; */
+}
+
+.drawer-container
+{
+  margin-top: 2px;
+  overflow: hidden;
+}
+
+.drawer
+{
+  width: 200px;
+  background-color: #d6d4d4;
+}

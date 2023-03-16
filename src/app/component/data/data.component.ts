@@ -61,7 +61,7 @@ export class DataComponent implements OnInit {
             return data2.firstName.indexOf(filter) != -1 || data.mobileNumber.indexOf(filter) != -1 || data2.lastName.indexOf(filter) != -1 || data2.email.indexOf(filter) != -1;
           };
         }, (error) => {
-          this.dataLoadingStatus = "Server side error! Please contact technician.";
+          this.dataLoadingStatus = "Server side error! Kindly contact technician.";
           this.isError = true;
         });
     }, 1500);
