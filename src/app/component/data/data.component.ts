@@ -22,7 +22,6 @@ export class DataComponent implements OnInit {
   columnToDisplay: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'birthDate', 'gender', 'address', 'city', 'pincode'];
   formGroup: FormGroup;
 
-
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort | any;
   constructor(private singUpService: SingUpService) {
