@@ -1,21 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;overflow-x: hidden; }
-.hidden
-{
+html,
+body {
+  /* padding-top: 64px; */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
+
+.hidden {
   display: none;
 }
-.cursor-pointer{
+
+.cursor-pointer {
   cursor: pointer;
 }
+
 .margin {
-  margin: 50px 400px;
+  margin: 0 400px;
+  margin-top: 0px ;
+  margin-bottom: 100px;
+
 }
-.marginMeassage{
+
+.marginMeassage {
   margin-left: 40%;
   margin-bottom: 20px;
 }
+
 mat-progress-spinner {
   margin: 0 auto;
   display: block;

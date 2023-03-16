@@ -1,21 +1,21 @@
-<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
-
+<mat-toolbar color="primary" fxLayout="row" class="fixed-navbar" fxLayoutAlign="space-between center">
 
     <!-- left box of toolbar start -->
     <div fxLayout="row" fxLayoutAlign="space-between center">
-        <button mat-icon-button>
+        <button mat-icon-button matTooltip="Sidebar" (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <a mat-icon-button>
+        <button mat-icon-button matTooltip="Dashboard" [routerLink]="['/data']">
             <mat-icon>home</mat-icon>
-        </a>
+        </button>
         <span>CRUD</span>
     </div>
 
     <!-- center box -->
 
     <div>
-        <button type="button" mat-stroked-button (click)="toggleArrow()" fxHide.lt-md="true">
+        <button type="button" mat-stroked-button (click)="toggleArrow()" fxHide.lt-md="true"
+        matTooltip="Click to Expand/Collaps Statistics" >
 
             <span>Statistics</span>
             <mat-icon [innerHtml]="arrowDown ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"></mat-icon>
@@ -25,27 +25,97 @@
     </div>
 
     <!-- last box -->
+
     <div fxLayoutAlign="space-between center">
-        <button type="button" mat-stroked-button fxHide.lt-md="true">
+        <button type="button" mat-stroked-button fxHide.lt-md="true" matTooltip="User" [matMenuTriggerFor]="user">
             <mat-icon>account_circle</mat-icon>User
         </button>
-        <button type="button" mat-icon-button>
-           <mat-icon>notifications</mat-icon> 
+        <button type="button" mat-icon-button matTooltip="Notifications" [matMenuTriggerFor]="notification">
+            <mat-icon matBadge="2" matBadgeColor="warn">notifications</mat-icon>
         </button>
-        <button type="button" mat-icon-button>
+        <button type="button" mat-icon-button [matMenuTriggerFor]="topmenu" matTooltip="Menu">
             <mat-icon>more_vert</mat-icon>
         </button>
 
-        <!-- <a mat-button mat-raised-button color="warn" routerLink="/login">Login</a> &nbsp;
-        <a mat-button mat-raised-button color="accent" routerLink="/singup">SingUp</a> -->
     </div>
-    <!-- <a mat-button>Home</a>
-    <a mat-button>Services</a>
-    <a mat-button>Projects</a>
-    <a mat-button routerLink="/data">Data</a>
-    <div class="spacer"></div> -->
 
-    <!-- <p>{{"smit"}}</p> -->
-    <!-- <a mat-button mat-raised-button color="warn" routerLink="/login">Login</a> &nbsp;
-    <a mat-button mat-raised-button color="accent" routerLink="/singup">SingUp</a> -->
+    <mat-menu #topmenu="matMenu">
+        <a [routerLink]="['/data']" mat-menu-item>
+            Dashboard
+        </a>
+        <button mat-menu-item [matMenuTriggerFor]="booking">Booking</button>
+        <button mat-menu-item [matMenuTriggerFor]="user">User</button>
+        <button mat-menu-item>Statistics</button>
+
+    </mat-menu>
+
+    <mat-menu #booking="matMenu">
+        <a [routerLink]="['/data']" mat-menu-item>
+            New Booking
+        </a>
+        <a [routerLink]="['/data']" mat-menu-item>
+            Booking List
+        </a>
+    </mat-menu>
+
+    <mat-menu #user="matMenu">
+
+        <button [routerLink]="['/login']" mat-menu-item >
+            Login
+        </button>
+        <button [routerLink]="['/login']" mat-menu-item>
+            Logout
+        </button>
+        <a [routerLink]="['/singup']" mat-menu-item>
+            SingUp
+        </a>
+    </mat-menu>
+
+    <mat-menu #notification="matMenu">
+        <button mat-menu-item>
+            <mat-icon>email</mat-icon>Email from John
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>
+            <mat-icon> receipt_long</mat-icon>Send Bills to Customers
+        </button>
+    </mat-menu>
+
 </mat-toolbar>
+
+<mat-expansion-panel [expanded]="arrowDown">
+    <div class="mt" fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div class="fw-bolder">Booking Summary</div>
+       
+        <div>
+            <div>This Week:</div>
+            <div class="fw-bolder">108</div>
+        </div>
+
+        <div>
+            <div>This Month:</div>
+            <div class="fw-bolder">595</div>
+        </div>
+
+        <div>
+            <div>This Year:</div>
+            <div class="fw-bolder">12052</div>
+        </div>
+
+    </div>
+</mat-expansion-panel>
+
+<mat-drawer-container class="drawer-container">
+  <mat-drawer #drawer class="drawer" mode="side" opened="true">
+    <div class="user-logo">
+      <mat-icon class="user-icon">person_outline</mat-icon>
+      <div class="v-align-middle">User</div>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-drawer>
+
+  <div class="main">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

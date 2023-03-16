@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginViewModel } from '../../viewmodel/login-view-model';
 import { LoginService } from '../../services/login.service';
@@ -46,7 +46,6 @@ export class LoginComponent {
 
       this.loginService.login(loginViewModel).subscribe(
         (response) => {
-          
           this.hidden=true;
           this.router.navigate(["data"]);
         },
@@ -63,7 +62,7 @@ export class LoginComponent {
         });   
     }
 
-  },1500);
+  },0);
   }
 
 afterResponseApi(enterAnimationDuration: string, exitAnimationDuration: string) {

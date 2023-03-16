@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
+import { Component,OnInit  } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
+
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
 
 
-  arrowDown = true;
+export class NavbarComponent implements OnInit{
 
-toggleArrow() {
-  this.arrowDown = !this.arrowDown;
-}
+  arrowDown = false;
+  constructor(private loginService: LoginService) {
+
+  }
+  ngOnInit(){
+  }
+  toggleArrow() {
+    this.arrowDown = !this.arrowDown;
+  }
+
+ 
 }

@@ -26,6 +26,8 @@ export class SingupComponent {
   done: boolean = false;
   canLeave: boolean = true;
   hidden: boolean = true;
+  marginBottom: number = 100;
+
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     // Prevent Saturday and Sunday from being selected.
@@ -69,6 +71,7 @@ export class SingupComponent {
     this.formGroup["submitted"] = true;
     if (this.formGroup.valid) {
       this.hidden = false;
+      this.marginBottom += 100;
       var signUpViewModel = this.formGroup.value as SingUp;
       this.singupServices.insertProject(signUpViewModel).subscribe(
         (response) => {
@@ -76,7 +79,7 @@ export class SingupComponent {
           this.hidden = true;
           this.afterResponseApi('300ms', '200ms');
           this.router.navigate(["login"]);
-        }, 
+        },
         (error) => {
           console.log(error);
           this.hidden = true;
@@ -101,7 +104,7 @@ export class SingupComponent {
 
     });
     dialogRef1.afterClosed().subscribe((result) => {
-     
+
       if (result == false) {
         this.router.navigate(["login"]);
       }

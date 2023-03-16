@@ -33,6 +33,11 @@ import { LoginDialogAlertComponent } from './dialog/login-dialog-alert/login-dia
 import { DuplicatedataDialogComponent } from './dialog/duplicatedata-dialog/duplicatedata-dialog.component'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -57,9 +62,13 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
     MatFormFieldModule,
     FlexLayoutModule,
     FormsModule,
+    MatDividerModule,
+    MatSidenavModule,
+    MatBadgeModule,
     MatSortModule,
     MatMenuModule,
     MatCheckboxModule,
@@ -74,7 +83,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     HttpClientModule,   
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatExpansionModule
   ],
   exports: [
     BrowserModule,
@@ -92,7 +102,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatPseudoCheckboxModule,
     MatInputModule,
     MatIconModule,
-    
+    MatExpansionModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
