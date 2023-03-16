@@ -1,4 +1,4 @@
-import { Component,OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 
 
@@ -10,17 +10,27 @@ import { LoginService } from 'src/app/services/login.service';
 })
 
 
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
 
+  isLoggedIn: boolean = false;
   arrowDown = false;
   constructor(private loginService: LoginService) {
 
   }
-  ngOnInit(){
+  ngOnInit() {
+
+    this.loginService.isLoggedIn.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    })
   }
   toggleArrow() {
     this.arrowDown = !this.arrowDown;
   }
 
- 
+  logout()
+  {
+    this.isLoggedIn=false;
+  }
+
+
 }

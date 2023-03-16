@@ -1,4 +1,4 @@
-<div class="container margin">
+<div class="mx-5 container ">
     <form [formGroup]="formGroup" (ngSubmit)="onLoginClick()" class="mx-5 item-center padding my-5 w-50 shadow px-5 py-3 mb-5 bg-body rounded">
         <br>
 
@@ -57,10 +57,10 @@
         <!-- submit & save etc... -->
 
         <div class="row">
-            <div class="col-5 offset-1">
+            <div class="col-6 ">
                 <button mat-raised-button class="w-100" color="primary" [disabled]="!hidden">Login</button>
             </div>
-            <div class="col-5">
+            <div class="col-6">
                 <button mat-raised-button class="w-100" color="warn" [disabled]="!hidden" routerLink="/singup">Not have account!</button>
 
             </div>

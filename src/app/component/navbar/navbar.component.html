@@ -60,13 +60,16 @@
 
     <mat-menu #user="matMenu">
 
-        <button [routerLink]="['/login']" mat-menu-item >
+        <button mat-menu-item *ngIf="isLoggedIn">
+            Profile
+        </button>
+        <button [routerLink]="['/login']" mat-menu-item *ngIf="!isLoggedIn">
             Login
         </button>
-        <button [routerLink]="['/login']" mat-menu-item>
+        <button [routerLink]="['/login']" mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
             Logout
         </button>
-        <a [routerLink]="['/singup']" mat-menu-item>
+        <a [routerLink]="['/singup']" mat-menu-item *ngIf="!isLoggedIn">
             SingUp
         </a>
     </mat-menu>

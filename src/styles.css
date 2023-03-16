@@ -15,10 +15,9 @@ body {
   cursor: pointer;
 }
 
-.margin {
-  margin: 0 400px;
-  margin-top: 0px ;
-  margin-bottom: 100px;
+.marginSingUp {
+  margin: 50px 0px;
+  margin-left: 25%;
 
 }
 
@@ -26,7 +25,9 @@ body {
   margin-left: 40%;
   margin-bottom: 20px;
 }
-
+.width{
+  width: 80%;
+}
 mat-progress-spinner {
   margin: 0 auto;
   display: block;

@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginViewModel } from '../viewmodel/login-view-model';
 import { map, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  isLoggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,6 +20,7 @@ export class LoginService {
       .pipe(map(response => {
         if (response) {
           console.log(response);
+          this.isLoggedIn.next(true);
         }
 
       }));
