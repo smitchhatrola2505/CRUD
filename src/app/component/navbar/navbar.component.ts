@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   userName: string = "";
-  firstName:string="";
+  firstNameUser:string="";
   defaultName :string = "Unknow";
   arrowDown = false;
   constructor(private loginService: LoginService) {
@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
       this.loginService.responseSubject.subscribe(response => {
         this.userName = response.body.firstName + " "+ response.body.lastName;
-        this.firstName = response.body.firstName;
+        this.firstNameUser = response.body.firstName;
       })
 
   }
@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.isLoggedIn = false;
     this.userName = this.defaultName;
-    this.firstName = this.defaultName;
+    this.firstNameUser = this.defaultName;
   }
 
 

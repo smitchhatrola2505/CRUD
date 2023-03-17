@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LoginDialogAlertComponent } from '../../dialog/login-dialog-alert/login-dialog-alert.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSubmitServerErrorComponent } from '../../dialog/dialog-submit-server-error/dialog-submit-server-error.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent {
   hidden:boolean = true;
 
   constructor(private loginService:LoginService,private router: Router,
-    public dialog: MatDialog,private matSnackBar:MatSnackBar ) {
+    public dialog: MatDialog ) {
 
     this.formGroup = new FormGroup(
       {

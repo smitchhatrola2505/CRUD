@@ -1,0 +1,67 @@
+<form class="example-form border    ">
+
+    <div class="row mx-3 my-2">
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [value]="email" disabled>
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Mobile Number</mat-label>
+                <input type="text" matInput placeholder="0123456789" disabled [value]="mobileNumber">
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput placeholder="First Name" [value]="firstName" [disabled]="!emailEdit">
+                <mat-icon matSuffix (click)="editEmail()" type="button">edit</mat-icon>
+                <mat-hint>click on edit for update!</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. pat@example.com">
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mx-3 my-2">
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. pat@example.com">
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. pat@example.com">
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. pat@example.com">
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ex. pat@example.com">
+                <mat-hint>Not updated!</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+</form>

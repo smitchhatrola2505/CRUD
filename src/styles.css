@@ -6,7 +6,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
 }
-   
+
 .hidden {
   display: none;
 }
@@ -24,9 +24,11 @@ body {
   margin-left: 40%;
   margin-bottom: 20px;
 }
-.width{
+
+.width {
   width: 90%;
 }
+
 mat-progress-spinner {
   margin: 0 auto;
   display: block;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginViewModel } from '../viewmodel/login-view-model';
 import { map, Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import { SingUp } from '../viewmodel/sing-up';
 
 @Injectable({
   providedIn: 'root'

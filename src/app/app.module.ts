@@ -39,6 +39,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {MatListModule} from '@angular/material/list';
     DialogSubmitServerErrorComponent,
     LoginDialogAlertComponent,
     DuplicatedataDialogComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
