@@ -13,7 +13,7 @@
 
     <!-- center box -->
 
-    <div>
+    <div fxLayoutAlign="space-between center">
         <button type="button" mat-stroked-button (click)="toggleArrow()" fxHide.lt-md="true"
         matTooltip="Click to Expand/Collaps Statistics" >
 
@@ -28,7 +28,8 @@
 
     <div fxLayoutAlign="space-between center">
         <button type="button" mat-stroked-button fxHide.lt-md="true" matTooltip="User" [matMenuTriggerFor]="user">
-            <mat-icon>account_circle</mat-icon>User
+            <mat-icon>account_circle</mat-icon>
+            <div [innerHtml]="isLoggedIn?userName:defaultName" class="text-capitalize"></div>
         </button>
         <button type="button" mat-icon-button matTooltip="Notifications" [matMenuTriggerFor]="notification">
             <mat-icon matBadge="2" matBadgeColor="warn">notifications</mat-icon>
@@ -45,6 +46,7 @@
         </a>
         <button mat-menu-item [matMenuTriggerFor]="booking">Booking</button>
         <button mat-menu-item [matMenuTriggerFor]="user">User</button>
+        
         <button mat-menu-item>Statistics</button>
 
     </mat-menu>
@@ -59,7 +61,7 @@
     </mat-menu>
 
     <mat-menu #user="matMenu">
-
+  
         <button mat-menu-item *ngIf="isLoggedIn">
             Profile
         </button>
@@ -87,7 +89,7 @@
 </mat-toolbar>
 
 <mat-expansion-panel [expanded]="arrowDown">
-    <div class="mt" fxLayout="row" fxLayoutAlign="space-evenly center">
+    <div class="my-3" fxLayout="row" fxLayoutAlign="space-evenly center">
         <div class="fw-bolder">Booking Summary</div>
        
         <div>
@@ -110,11 +112,13 @@
 
 <mat-drawer-container class="drawer-container">
   <mat-drawer #drawer class="drawer" mode="side" opened="true">
-    <div class="user-logo">
-      <mat-icon class="user-icon">person_outline</mat-icon>
-      <div class="v-align-middle">User</div>
+    <div class="user-logo my-3 text-center fw-bold text-capitalize" >
+      <mat-icon>person_outline</mat-icon>
+      <div [innerHTML]="isLoggedIn?firstName:defaultName" >
+      </div>
     </div>
     <mat-divider></mat-divider>
+
   </mat-drawer>
 
   <div class="main">

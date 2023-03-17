@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class LoginService {
 
   isLoggedIn = new BehaviorSubject<boolean>(false);
+  responseSubject = new BehaviorSubject<any>("");
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,6 +22,7 @@ export class LoginService {
         if (response) {
           console.log(response);
           this.isLoggedIn.next(true);
+          this.responseSubject.next(response);
         }
 
       }));

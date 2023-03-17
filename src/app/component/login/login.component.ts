@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { LoginDialogAlertComponent } from '../../dialog/login-dialog-alert/login-dialog-alert.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogSubmitServerErrorComponent } from '../../dialog/dialog-submit-server-error/dialog-submit-server-error.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,7 @@ export class LoginComponent {
   hidden:boolean = true;
 
   constructor(private loginService:LoginService,private router: Router,
-    public dialog: MatDialog ) {
+    public dialog: MatDialog,private matSnackBar:MatSnackBar ) {
 
     this.formGroup = new FormGroup(
       {
@@ -47,6 +49,9 @@ export class LoginComponent {
       this.loginService.login(loginViewModel).subscribe(
         (response) => {
           this.hidden=true;
+          // this.snackBar.open('You have logged in successfully!', 'Close', {
+          //   duration: 3000
+          // });
           this.router.navigate(["data"]);
         },
         (error) => {
@@ -62,7 +67,7 @@ export class LoginComponent {
         });   
     }
 
-  },0);
+  },1500);
   }
 
 afterResponseApi(enterAnimationDuration: string, exitAnimationDuration: string) {

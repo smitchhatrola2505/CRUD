@@ -11,7 +11,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { SingupComponent } from './component/singup/singup.component';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule, MatPseudoCheckboxModule } from '@angular/material/core';
+import { MatNativeDateModule, MatPseudoCheckboxModule, MatRippleModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input'
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
@@ -38,6 +38,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatListModule,
+    MatRippleModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatTooltipModule,

@@ -13,23 +13,33 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn: boolean = false;
+  userName: string = "";
+  firstName:string="";
+  defaultName :string = "Unknow";
   arrowDown = false;
   constructor(private loginService: LoginService) {
 
   }
   ngOnInit() {
 
-    this.loginService.isLoggedIn.subscribe(isLoggedIn => {
-      this.isLoggedIn = isLoggedIn;
-    })
+      this.loginService.isLoggedIn.subscribe(isLoggedIn => {
+        this.isLoggedIn = isLoggedIn;
+      })
+
+      this.loginService.responseSubject.subscribe(response => {
+        this.userName = response.body.firstName + " "+ response.body.lastName;
+        this.firstName = response.body.firstName;
+      })
+
   }
   toggleArrow() {
     this.arrowDown = !this.arrowDown;
   }
 
-  logout()
-  {
-    this.isLoggedIn=false;
+  logout() {
+    this.isLoggedIn = false;
+    this.userName = this.defaultName;
+    this.firstName = this.defaultName;
   }
 
 
